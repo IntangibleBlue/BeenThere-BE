@@ -35,7 +35,7 @@ public class PinController {
     @GetMapping("/pin/{id}")
     public ResponseEntity<Pin> getPinById(@PathVariable Long id) {
         Pin pin = pinRepo.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id :" + id));
+                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id: " + id));
         return ResponseEntity.ok(pin);
     }
 
@@ -44,7 +44,7 @@ public class PinController {
     @PutMapping("/pin/{id}")
     public ResponseEntity<Pin> updatePin(@PathVariable Long id, @RequestBody Pin pinDetails) {
         Pin pin = pinRepo.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id :" + id));
+                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id: " + id));
         pin.setTitle(pinDetails.getTitle());
         pin.setDepartDate(pinDetails.getDepartDate());
         pin.setLog(pinDetails.getLog());
@@ -60,7 +60,7 @@ public class PinController {
     @DeleteMapping("/pin/{id}")
     public ResponseEntity<Map<String, Boolean>> deletePin(@PathVariable Long id){
         Pin pin = pinRepo.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id :" + id));
+                .orElseThrow(() -> new NoSuchElementException("Pin does not exist with id: " + id));
         pinRepo.delete(pin);
         Map<String, Boolean> response = new HashMap<>();
         response.put("deleted", Boolean.TRUE);
